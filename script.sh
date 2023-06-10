@@ -8,22 +8,20 @@ sudo apt-get update && sudo apt-get install -y \
     git
 
 # Por si ya existe una carpeta llamada gAbrIel
-rm -rf gAbriel    
-
 sudo virtualenv gAbriel 
 
-cd gAbriel 
+sudo cd gAbriel 
 
-source bin/activate
+sudo source bin/activate
 
-git init 
+sudo git init 
 
-git remote add origin https://github.com/System-Akari/gAbrIel.git
+sudo git remote add origin https://github.com/System-Akari/gAbrIel.git
 
-git config pull.rebase true
+sudo git config pull.rebase true
 
-git pull origin master
+sudo git pull origin master
 
-git pull
+sudo git pull
 
-echo "Script ejecutado con exito"
+sudo echo "Script ejecutado con exito"
