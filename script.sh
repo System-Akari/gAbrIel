@@ -12,7 +12,7 @@ sudo virtualenv gAbriel
 
 cd gAbriel 
 
-sudo source bin/activate
+source bin/activate
 
 sudo git init 
 
