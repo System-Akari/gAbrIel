@@ -10,7 +10,7 @@ sudo apt-get update && sudo apt-get install -y \
 # Por si ya existe una carpeta llamada gAbrIel
 sudo virtualenv gAbriel 
 
-sudo cd gAbriel 
+cd gAbriel 
 
 sudo source bin/activate
 
