@@ -16,7 +16,7 @@ source bin/activate
 
 sudo git init 
 
-rm .gitignore
+sudo rm .gitignore
 
 sudo git remote add origin https://github.com/System-Akari/gAbrIel.git
 
