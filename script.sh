@@ -7,9 +7,10 @@ sudo apt-get update && sudo apt-get install -y \
     virtualenv \
     git
 
+# Por si ya existe una carpeta llamada gAbrIel
 rm -rf gAbriel    
 
-virtualenv gAbriel 
+sudo virtualenv gAbriel 
 
 cd gAbriel 
 
@@ -24,7 +25,5 @@ git config pull.rebase true
 git pull origin master
 
 git pull
-
-pip3 install -r requirements.txt
 
 echo "Script ejecutado con exito"
