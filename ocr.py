@@ -21,4 +21,3 @@ def imagenes_a_texto(carpeta):
             with open(nombre_archivo, 'w') as file: #Creamos el archivo y le insertamos el texto
                 file.write(text)
 
-imagenes_a_texto('img')
