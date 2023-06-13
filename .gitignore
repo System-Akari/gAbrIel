@@ -5,3 +5,5 @@ lib/
 *.pdf
 *.txt
 !requirements.txt
+img/
+
