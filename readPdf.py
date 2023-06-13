@@ -16,3 +16,34 @@ def pdf_a_txt(archivoPDF):
         
 x = 'juan'
 print ('Angelo estuvo aqui')
+
+from fpdf import FPDF
+
+#Esta funcion nos permite controla el proceso de compresion a PDF
+
+def txt_a_pdf(archivo_txt, archivo_pdf):
+    pdf = FPDF() 
+    pdf.add_page()
+    pdf.set_auto_page_break(auto = True, margin = 15)
+    pdf.set_font('Arial', size = 12)
+
+#En este pequeño bloque nos permitira abrir el archivo de texto para su analisis
+
+    with open(archivo_txt, 'r') as archivo:
+        contenido = archivo.read()
+    
+    lineas = contenido.split('\n') #Aqui ira haciendo saltos de linea cuando el texto llege a los margenes definidos en la funcion
+    
+#Aqui irá comprimiendo en el PDF cada linea de archivo
+
+    for linea in lineas:
+        pdf.multi_cell(0, 10, txt = linea, align = 'L')
+    
+    pdf.output(archivo_pdf) #Comprime el archivo termiado en PDF
+
+#Aqui hacemos el llamado de la función para hacer la respectiva prueba de analisi de funcionamiento
+
+archivotexto = 'prueba_merged.txt'
+finalpdf = 'PruebaSalida.pdf'
+
+txt_a_pdf(archivotexto, finalpdf)
