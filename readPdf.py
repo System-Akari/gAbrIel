@@ -20,20 +20,20 @@ print ('Angelo estuvo aqui')
 from fpdf import FPDF
 
 #Esta funcion nos permite controla el proceso de compresion a PDF
-def txt_a_pdf(archivo_txt, archivo_pdf):
-    pdf = FPDF() 
-    pdf.add_page()
-    pdf.set_auto_page_break(auto = True, margin = 15)
-    pdf.set_font('Arial', size = 12)
+def txt_a_pdf(archivo_txt, archivo_pdf): #Aquí le pasamos 2 parametros, el archivo que entra y el otro que sale
+    pdf = FPDF() #Se declara la variable pdf para evitar estar llamando la función a cada rato
+    pdf.add_page() #Nos añade una nueva paágina en blanco
+    pdf.set_auto_page_break(auto = True, margin = 15) #Nos permite controlar los altos de línea y en que margen debe hacerlos
+    pdf.set_font('Arial', size = 12) #Nos permite controlar el tamaño y fuente de página
 
 #En este pequeño bloque nos permitira abrir el archivo de texto para su analisis
-    with open(archivo_txt, 'r') as archivo:
-        contenido = archivo.read()
+    with open(archivo_txt, 'r') as archivo: #Abre el archivo y lo pone en modo lectura
+        contenido = archivo.read() #Aquí guarda todo lo que se analizó en la variable contenido
     
     lineas = contenido.split('\n') #Aqui ira haciendo saltos de linea cuando el texto llege a los margenes definidos en la funcion
 
 #Aqui irá comprimiendo en el PDF cada linea de archivo
     for linea in lineas:
-        pdf.multi_cell(0, 10, txt = linea, align = 'L')
+        pdf.multi_cell(0, 10, txt = linea, align = 'L') #Aquí ajustamos los margenes de la hoja y el tipo de centrado y se riá repitiendo hasta que termine
     
-    pdf.output(archivo_pdf) #Comprime el archivo termiado en PDF
+    pdf.output(archivo_pdf) #Comprime el archivo terminado en PDF
