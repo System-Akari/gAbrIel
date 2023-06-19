@@ -5,7 +5,8 @@ sudo apt-get update && sudo apt-get install -y \
     python3.10 \
     python3-pip \
     virtualenv \
-    git
+    git \
+    poppler-utils
 
 # Por si ya existe una carpeta llamada gAbrIel
 sudo virtualenv gAbriel 
