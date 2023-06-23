@@ -16,22 +16,17 @@ model = MarianMTModel.from_pretrained(model_name)
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 
 def tomar_txt_traduccion(archivo):
-    variable = ''
     nombre_doc_base = os.path.basename(archivo)
     nombre_doc = os.path.splitext(nombre_doc_base)[0] + '_es' +'.txt'
-    newarchive = open(nombre_doc,'w')
-    if (r"\.txt$", archivo):
-        getext =  open(archivo)
-        lines = getext.readlines()
-        for i in lines:
-            lane = i.split('\n')
-            print(lane)
-            translated_text = translate(lane ,'en','es')
-            variable += translated_text
-            print(variable)
-            newarchive.write(variable)
-    else: 
-        print('no code')
+    getext =  open(archivo, 'r')
+    lines = getext.readlines()
+    for i in lines:
+        lane = i.split('\n')
+        print(lane)
+        translated_text = translate(lane ,'en','es')
+        newarchive = open(nombre_doc,'a')
+        newarchive.write(translated_text)
+        newarchive.close()
     return ':D'
 
 
