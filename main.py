@@ -3,6 +3,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 from langdetect import detect
+from readPdf import pdf_a_txt, txt_a_pdf
 
 # Descargar los recursos necesarios de NLTK
 nltk.download('punkt')
@@ -13,17 +14,58 @@ model = MarianMTModel.from_pretrained(model_name)
 tokenizer = MarianTokenizer.from_pretrained(model_name)
 
 
-#Vamos a tokenizar utilizando la funcion generada anteriormente:
+
+def leer_archivo_txt(archivotx):
+    lineas = []  # Array para almacenar las líneas del archivo
+    with open(archivotx, 'r') as archivo:
+        for linea in archivo:
+            lineas.append(linea.strip())
+    return lineas
+
+    
+
+#####tryyyyyyyyyy
+
 
 # Función para traducir texto de un idioma a otro
-def translate(text, source_lang, target_lang):
-    # Tokenización y generación de tokens de entrada
-    tokens = tokenizer.encode(text, return_tensors='pt')
+def translate(archivo, source_lang, target_lang):
+    lineas  = []
+    if (r"\.txt$", archivo):
+        lineas = leer_archivo_txt(archivo)    
+    else: 
+        print('no code')
+    tokens = tokenizer.encode(archivo, return_tensors='pt')
 
     # Traducción
     translated = model.generate(tokens, max_length=128, num_beams=4, early_stopping=True)
 
     # Decodificación de la traducción
+    translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
+
+    return translated_text
+
+####try2
+
+def translate(archivo, source_lang, target_lang):
+    if (r"\.txt$", archivo):
+        lineas = []  # Array para almacenar las líneas del archivo
+        with open(archivo, 'r') as archivo:
+            for linea in archivo:
+                lineas.append(linea.strip())
+                tokens = tokenizer.enconde(lineas, return_tensors='pt')
+                translated = model.generate(tokens, max_length=128, num_beams=4, early_stopping=True)
+                translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
+                
+
+
+    else: 
+        print('no code')
+
+
+    tokens = tokenizer.encode(archivo, return_tensors='pt')
+
+    translated = model.generate(tokens, max_length=128, num_beams=4, early_stopping=True)
+
     translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
 
     return translated_text
