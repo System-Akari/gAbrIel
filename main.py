@@ -24,8 +24,11 @@ def tomar_txt_traduccion(archivo):
         getext =  open(archivo)
         lines = getext.readlines()
         for i in lines:
-            translated_text = translate(i ,'en','es')
+            lane = i.split('\n')
+            print(lane)
+            translated_text = translate(lane ,'en','es')
             variable += translated_text
+            print(variable)
             newarchive.write(variable)
     else: 
         print('no code')
