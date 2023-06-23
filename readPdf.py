@@ -26,13 +26,13 @@ def txt_a_pdf(archivo_txt, archivo_pdf): #Aquí le pasamos 2 parametros, el arch
     pdf.set_font('Arial', size = 12) #Nos permite controlar el tamaño y fuente de página
 
 #En este pequeño bloque nos permitira abrir el archivo de texto para su analisis
-    with open(archivo_txt, 'r') as archivo: #Abre el archivo y lo pone en modo lectura
+    with open(archivo_txt, 'r', encoding='utf-8') as archivo: #Abre el archivo y lo pone en modo lectura
         contenido = archivo.read() #Aquí guarda todo lo que se analizó en la variable contenido
     
     lineas = contenido.split('\n') #Aqui ira haciendo saltos de linea cuando el texto llege a los margenes definidos en la funcion
 
 #Aqui irá comprimiendo en el PDF cada linea de archivo
     for linea in lineas:
-        pdf.multi_cell(0, 10, txt = linea, align = 'L') #Aquí ajustamos los margenes de la hoja y el tipo de centrado y se riá repitiendo hasta que termine
+        pdf.multi_cell(200, 10, txt=linea.encode('latin-1', 'replace').decode('latin-1'), align = 'L') #Aquí ajustamos los margenes de la hoja y el tipo de centrado y se riá repitiendo hasta que termine
     
     pdf.output(archivo_pdf) #Comprime el archivo terminado en PDF

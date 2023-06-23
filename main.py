@@ -21,13 +21,11 @@ def tomar_txt_traduccion(archivo):
     getext =  open(archivo, 'r')
     lines = getext.readlines()
     for i in lines:
-        lane = i.split('\n')
-        print(lane)
-        translated_text = translate(lane ,'en','es')
+        translated_text = translate(i,'en','es')
         newarchive = open(nombre_doc,'a')
-        newarchive.write(translated_text)
+        newarchive.write(translated_text + '\n')
         newarchive.close()
-    return ':D'
+    return nombre_doc
 
 
 def translate(text, source_lang, target_lang):
@@ -44,8 +42,12 @@ def translate(text, source_lang, target_lang):
 
 
 
-tomar_txt_traduccion('Cinderella.txt')
-    
+nombre = pdf_a_txt('1952.pdf')
+nombre1 = tomar_txt_traduccion(nombre)
+nombre2 = nombre1[:-4] + '.pdf'
+print(nombre2)
+txt_a_pdf(nombre1, nombre2)
+
 
 
 # Funciones para ler un archivo y exportar un txt traducido
