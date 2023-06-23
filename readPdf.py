@@ -15,6 +15,28 @@ def pdf_a_txt(archivoPDF):
         archivoN.close()
     return nombre_doc
         
+def pdf_a_txt1(archivoPDF):
+    lector = PdfReader(archivoPDF) #creamos una variable que lea el archivo
+    nombre_doc_base = os.path.basename(archivoPDF) #extraemos el nombre del archivo con su extension
+    nombre_doc = os.path.splitext(nombre_doc_base)[0] + '.txt' #creamos un txt que se llame como el archivo original sin su extension
+    for i in range(len(lector.pages)): #ciclo for que recorre el archivo pdf pagina por pagina
+        pagina = lector.pages[i] #extraemos el texto de la pagina 'i'
+        if 'XObject' in pagina.keys() and any('/Im' in xobj for xobj in pagina['/XObject'].keys()):            
+            continue  # Saltar la página si contiene imágenes
+        
+        # Extraer el texto de la página
+        texto = pagina.extract_text()
+        
+        # Verificar si el texto está vacío
+        if texto.strip():
+            #abrimos el archivo txt y escribimos el texto extraido con el lector y al final lo cerramos(buena practica)
+            archivoN = open (nombre_doc,'a') 
+            archivoN.write(pagina.extract_text()) 
+            archivoN.close()
+    return nombre_doc
+        
+
+
 
 from fpdf import FPDF
 
