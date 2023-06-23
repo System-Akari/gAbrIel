@@ -13,9 +13,8 @@ def pdf_a_txt(archivoPDF):
         archivoN = open (nombre_doc,'a') 
         archivoN.write(pagina.extract_text()) 
         archivoN.close()
+    return nombre_doc
         
-x = 'juan'
-print ('Angelo estuvo aqui')
 
 from fpdf import FPDF
 

@@ -1,7 +1,6 @@
-print('hello world')
-
 import tensorflow as tf
 import nltk
+from nltk.tokenize import word_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 from langdetect import detect
 
@@ -12,6 +11,9 @@ nltk.download('punkt')
 model_name = 'Helsinki-NLP/opus-mt-en-es'  # Modelo de traducción de inglés a español
 model = MarianMTModel.from_pretrained(model_name)
 tokenizer = MarianTokenizer.from_pretrained(model_name)
+
+
+#Vamos a tokenizar utilizando la funcion generada anteriormente:
 
 # Función para traducir texto de un idioma a otro
 def translate(text, source_lang, target_lang):
