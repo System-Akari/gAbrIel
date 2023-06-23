@@ -76,35 +76,51 @@ def translate2(archivo, source_lang, target_lang):
 
 
 
-def translate3(archivo, source_lang, target_lang):
+def tomar_txt_traduccion(archivo):
+    newarchive = open('NuevoArchivo.txt','w')
     if (r"\.txt$", archivo):
-        lineas = []  # Array para almacenar las líneas del archivo
-        with open(archivo, 'r') as archivo:
-            for linea in archivo:
-                lineas.append(linea.strip())
-                tokens = tokenizer.enconde(lineas, return_tensors='pt')
-                translated = model.generate(tokens, max_length=128, num_beams=4, early_stopping=True)
-                translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
-                
-
-
+        getext =  open(archivo)
+        lines = getext.readlines()
+        for i in lines:
+            translated_text = translatebyline(i,'en','es')
+            newarchive.write(translated_text, 'a')
     else: 
         print('no code')
+    return ':D'
+
+def translate_file(input_file_path):
+    if not input_file_path.endswith(".txt"):
+        print("The input file is not in txt format.")
+        return
+
+    with open(input_file_path, "r") as input_file, open("NuevoArchivo.txt", "w") as output_file:
+        lines = input_file.readlines()
+        for line in lines:
+            translated_text = translatebyline(line, "en", "es")
+            output_file.write(translated_text + '\n')
+
+    return ":D"
 
 
-    tokens = tokenizer.encode(archivo, return_tensors='pt')
 
+def translatebyline(text, source_lang, target_lang):
+    # Tokenización y generación de tokens de entrada
+    tokens = tokenizer.encode(text, return_tensors='pt')
+
+    # Traducción
     translated = model.generate(tokens, max_length=128, num_beams=4, early_stopping=True)
 
+    # Decodificación de la traducción
     translated_text = tokenizer.decode(translated[0], skip_special_tokens=True)
 
     return translated_text
 
 
-while True:
-    # Texto de entrada
-    nombredoc = pdf_a_txt('Cinderella.pdf')
-    print(translate1(nombredoc, 'en', 'es'))
+
+
+nombredoc = pdf_a_txt('Cinderella.pdf')
+translate_file(nombredoc)
+    
 
 
 # Funciones para ler un archivo y exportar un txt traducido
