@@ -1,6 +1,8 @@
 bin/
 lib/
+Frontend/
 *.cfg
+__pycache__/
 
 *.pdf
 *.txt
