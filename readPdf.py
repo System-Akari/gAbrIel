@@ -1,7 +1,7 @@
 from PyPDF2 import PdfReader
 import os
 
-#funcion para extraer el texto de un pdf
+
 def pdf_a_txt(archivoPDF):
     lector = PdfReader(archivoPDF) #creamos una variable que lea el archivo
     nombre_doc_base = os.path.basename(archivoPDF) #extraemos el nombre del archivo con su extension
@@ -58,3 +58,5 @@ def txt_a_pdf(archivo_txt, archivo_pdf): #Aquí le pasamos 2 parametros, el arch
         pdf.multi_cell(200, 10, txt=linea.encode('latin-1', 'replace').decode('latin-1'), align = 'L') #Aquí ajustamos los margenes de la hoja y el tipo de centrado y se riá repitiendo hasta que termine
     
     pdf.output(archivo_pdf) #Comprime el archivo terminado en PDF
+    archivo_final = os.path.basename(archivo_pdf)
+    return archivo_final

@@ -5,6 +5,7 @@ from transformers import MarianMTModel, MarianTokenizer
 from langdetect import detect
 from readPdf import pdf_a_txt, txt_a_pdf
 import os
+from Api.api import recibir_archivo
 
 
 # Descargar los recursos necesarios de NLTK
@@ -58,7 +59,7 @@ nombre2 = nombre1[:-4] + '.pdf'
 print(nombre2)
 
 # Finalmente agregamos ambos archivos para que se envien finalmente
-txt_a_pdf(nombre1, nombre2)
+archivo_final = txt_a_pdf(nombre1, nombre2)
 
 
 
